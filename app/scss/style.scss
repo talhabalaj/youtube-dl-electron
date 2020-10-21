@@ -1,0 +1,337 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+$colors:( 
+    primary: #6314EC,
+    secondary: #E5404A,
+    grey-dark:#707070,
+    grey-light: #ABABAB,
+    grey: #A1A1A1,
+    light: #f3f3f3,
+    white:  #FFFFFF, 
+    dark: #2E2E2E,
+    darker: #111111,
+    primary-light: #e74f4f
+);
+
+@mixin box-shadow($y-off, $blur, $color, $opacity, $spread) {
+    box-shadow: 0 #{$y-off} #{$blur} #{$spread} rgba(map-get($colors, $color), $opacity);
+}
+
+:root {
+    @each $color-name, $color in $colors {
+        --color-#{$color-name}: #{$color};
+    }
+}
+
+@function color($color-name) {
+    @return var(--color-#{$color-name});
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+ 
+::-webkit-scrollbar-track {
+}
+ 
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to top, color(secondary), color(primary));
+}
+
+html {
+    font-size: 67.5%;
+}
+
+body {    
+    background: white;
+    overflow-y:hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.win-title-bar {
+    -webkit-app-region: drag;
+    z-index: 2000;
+    width: 100%;
+    height: 31px;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-image: linear-gradient(to right, color(secondary), color(primary));
+    &__buttons {
+        position: absolute;
+        right: 0;
+        user-select: none;
+        top: 0;
+        -webkit-app-region: no-drag;
+        bottom: 0;
+    }
+    &__button {       
+        display: inline-block;        
+        color: red;
+        line-height: 31px;
+        vertical-align: middle;
+        text-align: center; 
+        width: 40px;
+        height: 31px;
+        img {
+            width: 11px;
+            height: 11px;
+        }                
+        &--cross {            
+            &:hover {
+                background-color: red;
+            }
+        }
+        &--min, &--max {
+            &:hover {
+                background-color: rgba(255,255, 255,0.2);
+            }
+        }        
+    }
+}
+
+main {
+    margin-top: 31px;
+    padding-top: 2rem;
+    overflow-y: scroll;
+    height: 100vh;
+}
+
+.section-download {
+    padding: 1rem;
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        text-align: left;
+        color: color(dark);        
+    }
+    .download-form {
+        padding: 1rem;
+        transition: all 1s;
+        max-height: 100rem;
+        .input-field {
+            margin-bottom: 1rem;
+            display: inline-block;
+            width: 100%;
+            outline: none;
+            padding: 1rem 1.5rem;
+            font-size: 2rem;
+            @include box-shadow(0, 1rem, 'dark', .3, 0);
+            border: 1px solid color(white);
+        }
+    }   
+    .result {       
+        transition: all .3s;
+        max-width: 100rem;
+        font-size: 1.6rem;
+        color: color(grey-dark);
+        .radios {
+            margin-bottom: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            .radio {
+                margin-right: 1rem;
+                margin-bottom: 1.4rem;
+                margin-top: 1.4rem; 
+                input[type=radio] {
+                    display: none;
+                    &:checked ~ label {
+                        color: white;
+                        background: linear-gradient(to bottom right, color(primary), color(primary-light))
+                    }
+                }
+                label {
+                    padding: 1rem;
+                    transition: all .2s;
+                    font-size: 1.4rem;                    
+                    border: 1px solid color(grey);
+                    &:hover {
+                        background-color: color(grey);
+                        color: color(white);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.header {
+    display: flex;
+    padding: 1rem;
+    flex-wrap: wrap;
+    .heading {
+        display: block;
+        margin: .5rem;
+        font-size: 3.2rem;
+        flex-grow: 9;
+    }
+    nav {
+        margin: .5rem;
+        vertical-align: bottom;
+        ul {
+            list-style: none;
+            li {
+                @extend %btn;
+                border-radius: 50%;
+                padding: 1rem 1.5rem;
+            }
+        }
+    }
+}
+
+
+
+
+.downloads {
+    padding: 1rem;
+
+    .download-item {
+        margin: 1rem;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        font-size: 1.2rem;
+        font-weight: 400;
+        border-radius: 6px;
+        position: relative;
+        @include box-shadow(.1rem, .6rem, 'dark', .16, 0);        
+        .progress-box {
+            width: 100%;
+            position: relative;
+            background-color: color(light);
+            height: 2.5rem;
+            overflow: hidden;
+            border-radius: 3px;
+            .progress-bar {
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 25%;
+                background-image: linear-gradient(to bottom right , color(primary), color(primary-light));
+                transition: all 1s;
+                 .progress-percent {
+                    text-align: center;
+                    color: white;
+                    width: 100%;
+                    line-height: 2.5rem;
+                    padding: 0 1rem;
+                    display: block;                    
+                    font-size: 1.3rem;
+                }
+            }
+        }
+        .flex-2 {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin-top: .5rem;
+            margin-bottom: .5rem;
+            & > {
+                width: calc(50% - 1rem);                
+            }
+            
+            .left {                
+                flex-grow: 4;              
+            }
+
+            .space {
+                flex-grow: 1;  
+                @media screen and (min-width:700) {
+                    flex-grow: 0; 
+                }
+            }
+
+            .right {                
+                flex-grow: 4;          
+              
+            }
+
+        }
+
+        .progress-details {
+            .speed {
+                text-align: right;
+            }
+        }
+        .progress {
+            margin-top: 1rem;
+        }
+        .info {
+            &__item {
+                display: flex;
+                margin-bottom: 1.4rem; 
+                font-size: 1.4rem;               
+                b {
+                    flex-grow: 1;
+                    font-weight: 600;
+                }
+                span {
+                    flex-grow: 4;
+                    text-align: right;
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+}
+
+%btn {
+    display: inline-block;
+    font-size: 1.7rem;    
+    background: linear-gradient(to top, color(primary), color(secondary));
+    background-size: 100%;
+    color: color(white);
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    background-origin: border-box;
+    transition: all .2s;
+    @include box-shadow(0, .51rem, 'dark', .3, 1px);
+    &:hover {
+        @include box-shadow(0, .51rem, 'dark', .3, 1px);
+    }
+    &:active {
+        transform: translateY(.5rem);
+        @include box-shadow(0, .51rem, 'dark', .3, 1px);
+    }
+}
+
+.btn {
+    @extend %btn;
+    border-radius: 3px;
+    padding: 1rem;
+    margin-right: .4rem;
+}
+
+svg {
+    width: 10rem;
+    height: 10rem;
+    margin-bottom: 1.6rem;
+}
+
+.byebye {
+    max-height: 0px !important;
+    opacity: 0;
+    overflow: hidden;
+    visibility: hidden;
+    max-width: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.modal {
+    font-size: 1.6rem !important;
+    border-radius: 0 !important;
+    @include box-shadow(0, .51rem, 'dark', .3, 1px);
+    & > * {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+    } 
+}
+

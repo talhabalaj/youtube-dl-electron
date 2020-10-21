@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Download Manager</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="win-title-bar">
+        <div class="win-title-bar__buttons">
+            <div id="min" class="win-title-bar__button win-title-bar__button--min"><img src="svg/min.svg" /></div>
+            <div id="max" class="win-title-bar__button win-title-bar__button--max"><img src="svg/max.svg" /></div>
+            <div id="cross" class="win-title-bar__button win-title-bar__button--cross"><img src="svg/cross.svg" /></div>
+        </div>
+    </div>
+    <main>
+        <div class="header">
+            <h1 class="heading">Downloads</h1>
+            <nav class="nav">
+                <ul>
+                    <li id="addButton"><i class="fa fa-plus"></i></li>
+                </ul>
+            </nav>
+        </div>
+        <div id="queue" class="downloads">
+
+        </div>
+    </main>
+    <script>
+        require("./js/common.js");
+        require("./js/downloadWindow.js");        
+    </script>
+</body>
+
+</html>

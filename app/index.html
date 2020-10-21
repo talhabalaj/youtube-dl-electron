@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>YouTubeDL</title>
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div class="win-title-bar">
+    <div class="win-title-bar__buttons">
+      <div id="min" class="win-title-bar__button win-title-bar__button--min"><img src="svg/min.svg" /></div>
+      <div id="max" class="win-title-bar__button win-title-bar__button--max"><img src="svg/max.svg" /></div>
+      <div id="cross" class="win-title-bar__button win-title-bar__button--cross"><img src="svg/cross.svg" /></div>
+    </div>
+  </div>
+  <main class="main">
+    <section class="section-download">
+      <div class="download-form" id="download-form">
+        <h1>Enter the URL to download</h1>
+        <input type="text" class="input-field" placeholder="https://www.youtube.com/watch?v=Av12-WxAFzV" id="youtubeUrl" />
+        <div id="parsedResult" class="result byebye"></div>
+        <button id="parse" class="btn">Parse</button>
+      </div>
+    </section>
+  </main>
+  <script>
+    require("./js/common.js");
+    require("./js/addWindow.js");
+  </script>
+</body>
+
+</html>
