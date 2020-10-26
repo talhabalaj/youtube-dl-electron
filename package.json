@@ -61,7 +61,7 @@
     "humanize": "0.0.9",
     "lodash": "^4.17.11",
     "sweetalert2": "^7.26.14",
-    "ytdl-core": "^0.25.2"
+    "ytdl-core": "latest"
   },
   "devDependencies": {
     "electron-builder": "^20.28.4",
