@@ -59,7 +59,7 @@
     "ffprobe-static-electron": "^2.0.0",
     "fluent-ffmpeg": "^2.1.2",
     "humanize": "0.0.9",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "sweetalert2": "^7.26.14",
     "ytdl-core": "latest"
   },
